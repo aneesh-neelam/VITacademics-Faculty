@@ -16,3 +16,19 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+var bcrypt = require('bcrypt');
+var cache = require('memory-cache');
+var path = require('path');
+var underscore = require('underscore');
+
+var db = require(path.join(__dirname, 'db'));
+
+exports.gettoken = function (empId, password, callback)
+{
+
+};
+
+exports.destroytoken = function (token, callback)
+{
+
+};

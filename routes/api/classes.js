@@ -20,10 +20,10 @@ var express = require('express');
 var path = require('path');
 var router = express.Router();
 
-var api_auth = require(path.join(__dirname, '..', '..', 'api', 'auth'));
+var api_classes = require(path.join(__dirname, '..', '..', 'api', 'auth'));
 
 
-router.post('/gettoken', function (req, res)
+router.post('/getclasses', function (req, res)
 {
     var empId = req.body.empid;
     var password = req.body.password;
@@ -39,10 +39,29 @@ router.post('/gettoken', function (req, res)
             res.send(response);
         }
     };
-    api_auth.gettoken(empid, password, onSubmit);
+    api_classes.getclasses(empid, password, onSubmit);
 });
 
-router.post('/destroytoken', function (req, res)
+router.post('/getstudents', function (req, res)
+{
+    var empId = req.body.empid;
+    var password = req.body.password;
+    var onSubmit = function (err, response)
+    {
+        if (err)
+        {
+            res.send(response);
+        }
+        else
+        {
+            res.cookie('empid', empId, {maxAge: 10000, signed: true});
+            res.send(response);
+        }
+    };
+    api_classes.getclasses(empid, password, onSubmit);
+});
+
+router.post('/postattendance', function (req, res)
 {
     var token = req.body.token;
     var onSubmit = function (err, response)
@@ -57,7 +76,25 @@ router.post('/destroytoken', function (req, res)
         }
     };
     res.clearCookie(empid, { });
-    api_auth.destroytoken(token, onSubmit);
+    api_classes.postattendance(token, onSubmit);
+});
+
+router.post('/reschedule', function (req, res)
+{
+    var classNumber = req.body.classnumber;
+    var onSubmit = function (err, response)
+    {
+        if (err)
+        {
+            res.send(response);
+        }
+        else
+        {
+            res.send(response);
+        }
+    };
+    res.clearCookie(empid, { });
+    api_classes.reschedule(token, onSubmit);
 });
 
 module.exports = router;
