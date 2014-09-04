@@ -25,7 +25,9 @@ var path = require('path');
 
 var newrelic;
 if (process.env.NEWRELIC_APP_NAME && process.env.NEWRELIC_LICENSE)
+{
     newrelic = require('newrelic');
+}
 
 var log;
 if (process.env.LOGENTRIES_TOKEN)
@@ -36,13 +38,15 @@ if (process.env.LOGENTRIES_TOKEN)
                             });
 }
 
-var routes = require(path.join(__dirname, 'routes', 'index'));
-var users = require(path.join(__dirname, 'routes', 'users'));
+var routes = require(path.join(__dirname, 'routes', 'web', 'index'));
+var api_login = require(path.join(__dirname, 'routes', 'api', 'auth'));
 
 var app = express();
 
 if (newrelic)
+{
     app.locals.newrelic = newrelic;
+}
 
 var loggerLevel = process.env.LOGGER_LEVEL || 'dev';
 app.use(logger(loggerLevel));
@@ -62,7 +66,7 @@ var cookieSecret = process.env.COOKIE_SECRET || 'randomsecretstring';
 app.use(cookieParser(cookieSecret, {signed: true}));
 
 app.use('/', routes);
-app.use('/users', users);
+app.use('/api/auth', api_login);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next)
@@ -79,7 +83,9 @@ if (app.get('env') === 'development')
     app.use(function (err, req, res, next)
             {
                 if (log)
+                {
                     log.log('debug', {Error: err, Message: err.message});
+                }
                 res.status(err.status || 500);
                 res.render('error', {
                     message: err.message,
@@ -93,7 +99,9 @@ if (app.get('env') === 'development')
 app.use(function (err, req, res, next)
         {
             if (log)
+            {
                 log.log('debug', {Error: err, Message: err.message});
+            }
             res.status(err.status || 500);
             res.render('error', {
                 message: err.message,
