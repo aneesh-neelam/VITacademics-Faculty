@@ -27,6 +27,7 @@ router.post('/gettoken', function (req, res)
 {
     var empId = req.body.empid;
     var password = req.body.password;
+    var validity = 600000;
     var onSubmit = function (err, response)
     {
         if (err)
@@ -35,11 +36,11 @@ router.post('/gettoken', function (req, res)
         }
         else
         {
-            res.cookie('empid', empId, {maxAge: 10000, signed: true});
+            res.cookie('empid', empId, {maxAge: validity, signed: true});
             res.send(response);
         }
     };
-    api_auth.gettoken(empid, password, onSubmit);
+    api_auth.gettoken(empId, password, validity, onSubmit);
 });
 
 router.post('/destroytoken', function (req, res)
@@ -56,7 +57,7 @@ router.post('/destroytoken', function (req, res)
             res.send(response);
         }
     };
-    res.clearCookie(empid, { });
+    res.clearCookie('empid', { });
     api_auth.destroytoken(token, onSubmit);
 });
 

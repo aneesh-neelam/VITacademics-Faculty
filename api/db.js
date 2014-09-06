@@ -21,13 +21,13 @@ var MongoClient = require('mongodb').MongoClient;
 var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/GPL';
 
 
-exports.fetchUser = function (credentials, fields, callback)
+exports.fetchDocument = function (credentials, fields, callback)
 {
     var onConnect = function (err, db)
     {
         if (err)
         {
-            callback(err);
+            callback(err, null);
         }
         else
         {
@@ -41,10 +41,14 @@ exports.fetchUser = function (credentials, fields, callback)
                 }
                 else if (document)
                 {
-                    callback(null, document);
+                    callback(false, document);
+                }
+                else
+                {
+                    callback(false, null);
                 }
             };
-            collection.findOne(doc, fields, onFetch);
+            collection.findOne(credentials, fields, onFetch);
         }
     };
     MongoClient.connect(mongoUri, onConnect);

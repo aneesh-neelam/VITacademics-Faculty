@@ -22,10 +22,56 @@ var path = require('path');
 var underscore = require('underscore');
 
 var db = require(path.join(__dirname, 'db'));
+var error = require(path.join(__dirname, 'error'));
+var resource = require(path.join(__dirname, 'token-resource'));
 
-exports.gettoken = function (empId, password, callback)
+
+exports.gettoken = function (empId, password, validity, callback)
 {
-
+    var credentials = {
+        _id: empId
+    };
+    var onFetch = function (err, document)
+    {
+        var data = {};
+        if (err)
+        {
+            data.Error = error.codes.MongoDown;
+            callback(err, data);
+        }
+        else if (document)
+        {
+            if (bcrypt.compareSync(password, document.password_hash))
+            {
+                data.Error = error.codes.Success;
+                callback(err, data);
+                var token;
+                do
+                {
+                    token = underscore.sample(resource.resources, 6).join('');
+                }
+                while (cache.get(token));
+                data.Token = {
+                    Token: token,
+                    Validity: validity,
+                    Issued: new Date().toUTCString()
+                };
+                cache.put(empId, token, validity * 60 * 60 * 1000);
+                callback(false, data);
+            }
+            else
+            {
+                data.Error = error.codes.Invalid;
+                callback(true, data);
+            }
+        }
+        else
+        {
+            data.Error = error.codes.NoData;
+            callback(true, data);
+        }
+    };
+    db.fetchDocument(credentials, {_id: 1, password_hash: 1}, onFetch);
 };
 
 exports.destroytoken = function (token, callback)

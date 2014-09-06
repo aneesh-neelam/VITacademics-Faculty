@@ -3,6 +3,8 @@ VITacademics-Faculty
 
 VITacademics for Faculty
 
+This backend is hosted [here](http://vitacademics-faculty.herokuapp.com/)
+
 For the API Documentation, check out the [Project Wiki] (https://github.com/aneesh-neelam/VITacademics-Faculty/wiki)
 
 Please report any bugs or issues [here] (https://github.com/aneesh-neelam/VITacademics-Faculty/issues) 
