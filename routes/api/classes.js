@@ -23,27 +23,10 @@ var router = express.Router();
 var api_classes = require(path.join(__dirname, '..', '..', 'api', 'classes', 'classes'));
 
 
-router.post('/getstudents', function (req, res)
-{
-    var empId = req.body.empid;
-    var onSubmit = function (err, response)
-    {
-        if (err)
-        {
-            res.send(response);
-        }
-        else
-        {
-            res.cookie('empid', empId, {maxAge: 10000, signed: true});
-            res.send(response);
-        }
-    };
-    api_classes.getclasses(empid, password, onSubmit);
-});
-
 router.post('/postattendance', function (req, res)
 {
     var token = req.body.token;
+    var attendance = JSON.parse(req.body.attendance);
     var onSubmit = function (err, response)
     {
         if (err)
@@ -55,8 +38,7 @@ router.post('/postattendance', function (req, res)
             res.send(response);
         }
     };
-    res.clearCookie(empid, { });
-    api_classes.postattendance(token, onSubmit);
+    api_classes.postAttendance(token, attendance, onSubmit);
 });
 
 module.exports = router;

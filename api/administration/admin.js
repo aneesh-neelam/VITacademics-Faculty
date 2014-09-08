@@ -16,3 +16,31 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+var bcrypt = require('bcrypt');
+
+var db = require(path.join(__dirname, 'db'));
+
+exports.register = function (empId, password, callback)
+{
+    var salt = bcrypt.genSaltSync(10);
+    var hash = bcrypt.hashSync(password, salt);
+    var newUser = {
+        _id: empId,
+        PasswordHash: hash
+    };
+    var onInsert = function (err, docs)
+    {
+        var data;
+        if (err)
+        {
+            data = 'Faculty ID already exists';
+            callback(err, data)
+        }
+        else
+        {
+            data = empId + ' Registered';
+            callback(err, data)
+        }
+    };
+    db.insert(newUser, onInsert);
+};

@@ -39,6 +39,7 @@ if (process.env.LOGENTRIES_TOKEN)
 }
 
 var routes = require(path.join(__dirname, 'routes', 'web', 'index'));
+var routes_admin = require(path.join(__dirname, 'routes', 'web', 'admin'));
 var api_login = require(path.join(__dirname, 'routes', 'api', 'auth'));
 
 var app = express();
@@ -66,6 +67,7 @@ var cookieSecret = process.env.COOKIE_SECRET || 'randomsecretstring';
 app.use(cookieParser(cookieSecret, {signed: true}));
 
 app.use('/', routes);
+app.use('/admin', routes_admin);
 app.use('/api/auth', api_login);
 
 // catch 404 and forward to error handler

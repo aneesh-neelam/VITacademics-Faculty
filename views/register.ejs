@@ -17,16 +17,23 @@
 -->
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="author" content="Aneesh Neelam <neelam.aneesh@gmail.com>"/>
-    <title>Error | VITacademics-Faculty</title>
+    <title>Registration | VITacademics - Faculty</title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
 </head>
 <body>
-<h1><%= message %></h1>
+<h1>Faculty Registration</h1>
 
-<h2><%= status %></h2>
-<pre><%= stack %></pre>
+<form method="post" action="/admin/register">
+    <label for="empid">Faculty ID: </label>
+    <input type="text" id="empid" name="empid">
+    <br>
+    <label for="password">Password: </label>
+    <input type="password" id="password" name="password">
+    <br><br>
+    <input type="submit" name="Register" value="Register">
+    <br>
+</form>
 </body>
 </html>

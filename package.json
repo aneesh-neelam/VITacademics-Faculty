@@ -40,7 +40,6 @@
         "ejs": "~1.0.0",
         "underscore": "~1.7.0",
         "bcrypt": "~0.8.0",
-        "memory-cache": "0.0.5",
         "mongodb": "~1.4.10"
     },
     "repository": {

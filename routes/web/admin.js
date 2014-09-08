@@ -16,3 +16,34 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+var express = require('express');
+var path = require('path');
+var router = express.Router();
+
+var api_admin = require(path.join(__dirname, '..', '..', 'api', 'administration', 'admin'));
+
+
+router.get('/register', function (err, res)
+{
+    res.render('register', {});
+});
+
+router.post('/register', function (req, res)
+{
+    var empId = req.body.empid;
+    var password = req.body.password;
+    var onSubmit = function (err, response)
+    {
+        if (err)
+        {
+            res.send(response);
+        }
+        else
+        {
+            res.send(response);
+        }
+    };
+    api_admin.register(empId, password, onSubmit);
+});
+
+module.exports = router;

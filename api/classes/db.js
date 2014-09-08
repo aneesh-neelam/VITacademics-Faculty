@@ -31,7 +31,7 @@ exports.fetchDocument = function (credentials, fields, callback)
         }
         else
         {
-            var collection = db.collection('faculty');
+            var collection = db.collection('classes');
             var onFetch = function (err, document)
             {
                 db.close();

@@ -17,12 +17,11 @@
  */
 
 var bcrypt = require('bcrypt');
-var cache = require('memory-cache');
 var path = require('path');
 var underscore = require('underscore');
 
 var db = require(path.join(__dirname, 'db'));
-var error = require(path.join(__dirname, 'error'));
+var error = require(path.join(__dirname, '..', 'error'));
 var resource = require(path.join(__dirname, 'token-resource'));
 
 
@@ -41,14 +40,12 @@ exports.getAccessToken = function (empId, password, callback)
         }
         else if (document)
         {
-            if (bcrypt.compareSync(password, document.password_hash))
+            if (bcrypt.compareSync(password, document.PasswordHash))
             {
-                var token;
-                do
-                {
-                    token = underscore.sample(resource.resources, 8).join('');
-                }
-                while (cache.get(token));
+                var criterea = {
+                    FacultyID: empId
+                };
+                var token = underscore.sample(resource.resources, 8).join('');
                 var onUpdate = function (err, count, status)
                 {
                     if (err)
@@ -63,18 +60,17 @@ exports.getAccessToken = function (empId, password, callback)
                     }
                     else
                     {
-                        cache.put(document.empId, token);
                         data.Error = error.codes.Success;
                         data.Token = {
-                            EmpId: document.empId,
-                            Classes: document.classes,
+                            EmpId: document._id,
+                            Classes: document.Classes,
                             Token: token,
                             Issued: new Date().toUTCString()
                         };
                         callback(false, data);
                     }
                 };
-                db.updateDocument(credentials, {$set: {Token: token}}, onUpdate);
+                db.updateDocument(criterea, {$set: {Token: token}}, onUpdate);
             }
             else
             {
@@ -88,13 +84,13 @@ exports.getAccessToken = function (empId, password, callback)
             callback(true, data);
         }
     };
-    db.fetchDocument(credentials, {_id: 1, password_hash: 1, classes: 1}, onFetch);
+    db.fetchDocument(credentials, {_id: 1, PasswordHash: 1, Classes: 1}, onFetch);
 };
 
 exports.destroyAccessToken = function (empId, callback)
 {
-    var credentials = {
-        _id: empId
+    var criterea = {
+        FacultyID: empId
     };
     var data = {};
     var onUpdate = function (err, count, status)
@@ -111,10 +107,9 @@ exports.destroyAccessToken = function (empId, callback)
         }
         else
         {
-            cache.clear(empId);
             data.Error = error.codes.Success;
             callback(false, data);
         }
     };
-    db.updateDocument(credentials, {$unset: {Token: ''}}, onUpdate);
+    db.updateDocument(criterea, {$unset: {Token: ''}}, onUpdate);
 };
