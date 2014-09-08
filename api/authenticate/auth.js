@@ -42,7 +42,7 @@ exports.getAccessToken = function (empId, password, callback)
         {
             if (bcrypt.compareSync(password, document.PasswordHash))
             {
-                var criterea = {
+                var criteria = {
                     FacultyID: empId
                 };
                 var token = underscore.sample(resource.resources, 8).join('');
@@ -70,7 +70,7 @@ exports.getAccessToken = function (empId, password, callback)
                         callback(false, data);
                     }
                 };
-                db.updateDocument(criterea, {$set: {Token: token}}, onUpdate);
+                db.updateDocument(criteria, {$set: {Token: token}}, onUpdate);
             }
             else
             {
@@ -89,7 +89,7 @@ exports.getAccessToken = function (empId, password, callback)
 
 exports.destroyAccessToken = function (empId, callback)
 {
-    var criterea = {
+    var criteria = {
         FacultyID: empId
     };
     var data = {};
@@ -111,5 +111,5 @@ exports.destroyAccessToken = function (empId, callback)
             callback(false, data);
         }
     };
-    db.updateDocument(criterea, {$unset: {Token: ''}}, onUpdate);
+    db.updateDocument(criteria, {$unset: {Token: ''}}, onUpdate);
 };
