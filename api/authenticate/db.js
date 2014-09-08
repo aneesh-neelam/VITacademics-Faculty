@@ -31,7 +31,7 @@ exports.fetchDocument = function (credentials, fields, callback)
         }
         else
         {
-            var collection = db.collection('users');
+            var collection = db.collection('faculty');
             var onFetch = function (err, document)
             {
                 db.close();
@@ -49,6 +49,39 @@ exports.fetchDocument = function (credentials, fields, callback)
                 }
             };
             collection.findOne(credentials, fields, onFetch);
+        }
+    };
+    MongoClient.connect(mongoUri, onConnect);
+};
+
+exports.updateDocument = function (credentials, updatedDoc, callback)
+{
+    var onConnect = function (err, db)
+    {
+        if (err)
+        {
+            callback(err, null);
+        }
+        else
+        {
+            var collection = db.collection('faculty');
+            var onUpdate = function (err, document)
+            {
+                db.close();
+                if (err)
+                {
+                    callback(err, null);
+                }
+                else if (document)
+                {
+                    callback(false, document);
+                }
+                else
+                {
+                    callback(false, null);
+                }
+            };
+            collection.update(credentials, updatedDoc, {}, onUpdate);
         }
     };
     MongoClient.connect(mongoUri, onConnect);

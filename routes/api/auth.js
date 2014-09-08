@@ -20,14 +20,13 @@ var express = require('express');
 var path = require('path');
 var router = express.Router();
 
-var api_auth = require(path.join(__dirname, '..', '..', 'api', 'auth'));
+var api_auth = require(path.join(__dirname, '..', '..', 'api', 'authenticate', 'auth'));
 
 
 router.post('/gettoken', function (req, res)
 {
     var empId = req.body.empid;
     var password = req.body.password;
-    var validity = 600000;
     var onSubmit = function (err, response)
     {
         if (err)
@@ -36,16 +35,15 @@ router.post('/gettoken', function (req, res)
         }
         else
         {
-            res.cookie('empid', empId, {maxAge: validity, signed: true});
             res.send(response);
         }
     };
-    api_auth.gettoken(empId, password, validity, onSubmit);
+    api_auth.getAccessToken(empId, password, onSubmit);
 });
 
 router.post('/destroytoken', function (req, res)
 {
-    var token = req.body.token;
+    var empId = req.body.empid;
     var onSubmit = function (err, response)
     {
         if (err)
@@ -57,8 +55,7 @@ router.post('/destroytoken', function (req, res)
             res.send(response);
         }
     };
-    res.clearCookie('empid', { });
-    api_auth.destroytoken(token, onSubmit);
+    api_auth.destroyAccessToken(empId, onSubmit);
 });
 
 module.exports = router;
