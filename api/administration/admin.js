@@ -17,6 +17,7 @@
  */
 
 var bcrypt = require('bcrypt');
+var path = require('path');
 
 var db = require(path.join(__dirname, 'db'));
 
