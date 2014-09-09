@@ -38,6 +38,7 @@ exports.postAttendance = function (classNumber, token, attendance, callback)
         }
         else if (result.nModified == 0)
         {
+            console.log(result.nModified);
             data.Error = error.codes.NoData;
             callback(true, data);
         }
