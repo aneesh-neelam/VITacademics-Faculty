@@ -41,7 +41,8 @@
         "underscore": "~1.7.0",
         "bcrypt": "~0.8.0",
         "mongodb": "~1.4.10",
-        "newrelic": "~1.11.0"
+        "newrelic": "~1.11.0",
+        "node-logentries": "~0.1.4"
     },
     "repository": {
         "type": "git",
