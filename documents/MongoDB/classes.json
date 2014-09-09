@@ -1,0 +1,11 @@
+{ "_id": "2070", "FacultyID": "54321", "Slot": "D1", "CourseCode": "ECE350", "CourseTitle": "Circuit Design", "Attendance": [
+    {
+        "Present": [ "12BEC0260", "12BEC0094", "12BEC0375" ],
+        "Absent": [ "12BEC0354" ],
+        "Date": {
+            "$date": "2014-10-13T16:43:00.000+0530"
+        }
+    }
+] }
+{ "_id" : "7070", "FacultyID" : "12345", "Slot" : "A1", "CourseCode" : "CSE350", "CourseTitle" : "Computer Networks", "Attendance" : [ { "Present" : [ "12BEC0260", "12BEC0094", "12BEC0375" ], "Absent" : [ "11BCE0354" ], "Date" : { "$date" : "2014-10-13T16:43:00.000+0530" } }, { "Present" : [ "12BEC0260", "12BEC0094", "12BEC0375" ], "Absent" : [ "11BCE0354" ], "Date" : { "$date" : "2014-10-14T16:43:00.000+0530" } } ] }
+{ "_id" : "7071", "FacultyID" : "12345", "Slot" : "L31 + L32 + L33", "CourseCode" : "CSE351", "CourseTitle" : "Computer Networks Lab", "Attendance" : [ { "Present" : [ "12BEC0260", "12BEC0094", "12BEC0375" ], "Absent" : [ "11BCE0354" ], "Date" : { "$date" : "2014-10-20T16:43:00.000+0530" } } ] }
