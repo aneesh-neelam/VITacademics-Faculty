@@ -1,0 +1,26 @@
+[
+    {
+        "_id": "7070",
+        "FacultyID": "12345",
+        "Slot": "A1",
+        "CourseCode": "CSE350",
+        "CourseTitle": "Computer Networks",
+        "Attendance": []
+    },
+    {
+        "_id": "7071",
+        "FacultyID": "12345",
+        "Slot": "L31 + L32 + L33",
+        "CourseCode": "CSE351",
+        "CourseTitle": "Computer Networks Lab",
+        "Attendance": []
+    },
+    {
+        "_id": "2070",
+        "FacultyID": "54321",
+        "Slot": "D1",
+        "CourseCode": "ECE350",
+        "CourseTitle": "Circuit Design",
+        "Attendance": []
+    }
+]

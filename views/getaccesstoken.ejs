@@ -19,17 +19,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><%= title %></title>
+    <title>Get Access Token | VITacademics - Faculty</title>
     <link rel='stylesheet' href='/stylesheets/style.css'/>
 </head>
 <body>
-<h1><%= title %></h1>
+<h1>Get Faculty Access Token</h1>
 
-<p>Welcome to <%= title %></p>
-<br>
-<br>
-<a href="/test?getaccesstoken">Get Access Token</a>
-<a href="/test?destoryaccesstoken">Destroy Access Token</a>
-<a href="/test?postattendance">Post Attendance</a>
+<form method="post" action="/api/auth/gettoken">
+    <label for="empid">Faculty ID: </label>
+    <input type="text" id="empid" name="empid">
+    <br>
+    <label for="password">Password: </label>
+    <input type="password" id="password" name="password">
+    <br><br>
+    <input type="submit" name="Get" value="Get">
+    <br>
+</form>
 </body>
 </html>

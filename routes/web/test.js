@@ -17,30 +17,25 @@
  */
 
 var express = require('express');
-var path = require('path');
 var router = express.Router();
 
-var api_classes = require(path.join(__dirname, '..', '..', 'api', 'classes', 'classes'));
-
-
-router.post('/postattendance', function (req, res)
+router.get('/', function (req, res)
 {
-    var token = req.body.token;
-    var classNumber = req.body.classnumber;
-    var attendance = JSON.parse(req.body.attendance);
-    attendance.Date = new Date(req.body.date);
-    var onSubmit = function (err, response)
+    var type = req.query.type;
+    if (type == 'getaccesstoken')
     {
-        if (err)
-        {
-            res.send(response);
-        }
-        else
-        {
-            res.send(response);
-        }
-    };
-    api_classes.postAttendance(classNumber, token, attendance, onSubmit);
+        res.render('getaccesstoken', {});
+    }
+    else if (type == 'destroyaccesstoken')
+    {
+        res.render('destroyaccesstoken', {});
+    }
+    else if (type == 'postattendance')
+    {
+        res.render('postattendance', {});
+    }
+    else
+    {
+        res.redirect('/');
+    }
 });
-
-module.exports = router;

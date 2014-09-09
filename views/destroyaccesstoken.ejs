@@ -19,17 +19,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><%= title %></title>
+    <title>Destroy Access Token | VITacademics - Faculty</title>
     <link rel='stylesheet' href='/stylesheets/style.css'/>
 </head>
 <body>
-<h1><%= title %></h1>
+<h1>Destroy Faculty Access Token</h1>
 
-<p>Welcome to <%= title %></p>
-<br>
-<br>
-<a href="/test?getaccesstoken">Get Access Token</a>
-<a href="/test?destoryaccesstoken">Destroy Access Token</a>
-<a href="/test?postattendance">Post Attendance</a>
+<form method="post" action="/api/auth/destroytoken">
+    <label for="empid">Faculty ID: </label>
+    <input type="text" id="empid" name="empid">
+    <br>
+    <input type="submit" name="Submit" value="Submit">
+    <br>
+</form>
 </body>
 </html>

@@ -1,0 +1,49 @@
+[
+    {
+        "_id": "12345",
+        "PasswordHash": "$2a$10$b42FiRRGQyjbzTJs.udGXe7g3q0trWoghSJv/7yrn.bQ4G7eNerBO",
+        "Classes": [
+            {
+                "ClassNumber": "7070",
+                "Slot": "A1",
+                "CourseTitle": "Computer Networks",
+                "CourseCode": "CSE350",
+                "Students": [
+                    "11BCE0260",
+                    "11BCE0094",
+                    "11BCE0375",
+                    "11BCE0354"
+                ]
+            },
+            {
+                "ClassNumber": "7071",
+                "Slot": "L31 + L32 + L33",
+                "CourseTitle": "Computer Networks Lab",
+                "CourseCode": "CSE351",
+                "Students": [
+                    "11BCE0354",
+                    "11BCE0094",
+                    "11BCE0088"
+                ]
+            }
+        ]
+    },
+    {
+        "_id": "54321",
+        "PasswordHash": "$2a$10$cit8n62InIyRU21OwNOHyeZnIdO45qsg.iLZ34z7YZvho2P4DH6hO",
+        "Classes": [
+            {
+                "ClassNumber": "2070",
+                "Slot": "D1",
+                "CourseTitle": "Circuit Design",
+                "CourseCode": "ECE350",
+                "Students": [
+                    "12BEC0260",
+                    "12BEC0094",
+                    "12BEC0375",
+                    "12BEC0354"
+                ]
+            }
+        ]
+    }
+]

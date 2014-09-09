@@ -22,9 +22,10 @@ var db = require(path.join(__dirname, 'db'));
 var error = require(path.join(__dirname, '..', 'error'));
 
 
-exports.postAttendance = function (token, attendance, callback)
+exports.postAttendance = function (classNumber, token, attendance, callback)
 {
     var credentials = {
+        _id: classNumber,
         Token: token
     };
     var data = {};
