@@ -32,20 +32,16 @@ exports.updateDocument = function (credentials, updatedDoc, callback)
         else
         {
             var collection = db.collection('classes');
-            var onUpdate = function (err, document)
+            var onUpdate = function (err, result)
             {
                 db.close();
                 if (err)
                 {
                     callback(err, null);
                 }
-                else if (document)
-                {
-                    callback(false, document);
-                }
                 else
                 {
-                    callback(false, null);
+                    callback(false, result);
                 }
             };
             collection.update(credentials, updatedDoc, {}, onUpdate);

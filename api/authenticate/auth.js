@@ -93,14 +93,14 @@ exports.destroyAccessToken = function (empId, callback)
         FacultyID: empId
     };
     var data = {};
-    var onUpdate = function (err, count, status)
+    var onUpdate = function (err, result)
     {
         if (err)
         {
             data.Error = error.codes.MongoDown;
             callback(err, data);
         }
-        else if (count == 0)
+        else if (result.nMatched == 0)
         {
             data.Error = error.codes.NoData;
             callback(true, data);
