@@ -22,7 +22,7 @@
     "classes": {
         "FacultyID": "",
         "Token": "",
-        "ClassNumber": "",
+        "_id": "",
         "Slot": "",
         "CourseCode": "",
         "CourseTitle": "",
