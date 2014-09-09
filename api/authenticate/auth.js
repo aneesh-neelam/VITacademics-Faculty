@@ -46,14 +46,14 @@ exports.getAccessToken = function (empId, password, callback)
                     FacultyID: empId
                 };
                 var token = underscore.sample(resource.resources, 8).join('');
-                var onUpdate = function (err, count, status)
+                var onUpdate = function (err, result)
                 {
                     if (err)
                     {
                         data.Error = error.codes.MongoDown;
                         callback(err, data);
                     }
-                    else if (count == 0)
+                    else if (result.nMatched == 0)
                     {
                         data.Error = error.codes.NoData;
                         callback(true, data);
@@ -111,5 +111,5 @@ exports.destroyAccessToken = function (empId, callback)
             callback(false, data);
         }
     };
-    db.updateDocument(criteria, {$unset: {Token: ''}}, onUpdate);
+    db.updateDocument(criteria, {$unset: {Token: ''}}, {multi: true}, onUpdate);
 };
