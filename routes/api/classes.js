@@ -27,6 +27,7 @@ router.post('/postattendance', function (req, res)
 {
     var token = req.body.token;
     var attendance = JSON.parse(req.body.attendance);
+    attendance.Date = new Date(req.body.date);
     var onSubmit = function (err, response)
     {
         if (err)

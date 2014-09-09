@@ -42,10 +42,9 @@ exports.postAttendance = function (token, attendance, callback)
         }
         else
         {
-            cache.clear(empId);
             data.Error = error.codes.Success;
             callback(false, data);
         }
     };
-    db.updateDocument(credentials, {$unset: {Token: ''}}, onUpdate);
+    db.updateDocument(credentials, {$push: {Attendance: attendance}}, onUpdate);
 };

@@ -1,0 +1,37 @@
+{
+    "faculty": {
+        "_id": "",
+        "PasswordHash": "",
+        "Classes": [
+            {
+                "ClassNumber": "",
+                "Slot": "",
+                "CourseTitle": "",
+                "CourseCode": "",
+                "Students": ["", ""]
+            },
+            {
+                "ClassNumber": "",
+                "Slot": "",
+                "CourseTitle": "",
+                "CourseCode": "",
+                "Students": ["", ""]
+            }
+        ]
+    },
+    "classes": {
+        "FacultyID": "",
+        "Token": "",
+        "ClassNumber": "",
+        "Slot": "",
+        "CourseCode": "",
+        "CourseTitle": "",
+        "Attendance": [
+            {
+                "Date": "ISODate String",
+                "Present": [],
+                "Absent": []
+            }
+        ]
+    }
+}

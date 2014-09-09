@@ -21,39 +21,6 @@ var MongoClient = require('mongodb').MongoClient;
 var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/VITacademics';
 
 
-exports.fetchDocument = function (credentials, fields, callback)
-{
-    var onConnect = function (err, db)
-    {
-        if (err)
-        {
-            callback(err, null);
-        }
-        else
-        {
-            var collection = db.collection('classes');
-            var onFetch = function (err, document)
-            {
-                db.close();
-                if (err)
-                {
-                    callback(err, null);
-                }
-                else if (document)
-                {
-                    callback(false, document);
-                }
-                else
-                {
-                    callback(false, null);
-                }
-            };
-            collection.findOne(credentials, fields, onFetch);
-        }
-    };
-    MongoClient.connect(mongoUri, onConnect);
-};
-
 exports.updateDocument = function (credentials, updatedDoc, callback)
 {
     var onConnect = function (err, db)
