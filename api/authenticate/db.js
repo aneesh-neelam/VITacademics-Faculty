@@ -54,7 +54,7 @@ exports.fetchDocument = function (credentials, fields, callback)
     MongoClient.connect(mongoUri, onConnect);
 };
 
-exports.updateDocument = function (credentials, updatedDoc, callback)
+exports.updateDocument = function (credentials, updatedDoc, options, callback)
 {
     var onConnect = function (err, db)
     {
@@ -81,7 +81,7 @@ exports.updateDocument = function (credentials, updatedDoc, callback)
                     callback(false, null);
                 }
             };
-            collection.update(credentials, updatedDoc, {}, onUpdate);
+            collection.update(credentials, updatedDoc, options, onUpdate);
         }
     };
     MongoClient.connect(mongoUri, onConnect);

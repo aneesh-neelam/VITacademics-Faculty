@@ -1,0 +1,27 @@
+{
+    "Error": {
+        "Message": "Successful execution",
+        "Code": 0
+    },
+    "Token": {
+        "EmpId": "12345",
+        "Classes": [
+            {
+                "ClassNumber": "7070",
+                "Slot": "A1",
+                "CourseTitle": "Computer Networks",
+                "CourseCode": "CSE350",
+                "Students": ["11BCE0260", "11BCE0094", "11BCE0375", "11BCE0354"]
+            },
+            {
+                "ClassNumber": "7071",
+                "Slot": "L31 + L32 + L33",
+                "CourseTitle": "Computer Networks Lab",
+                "CourseCode": "CSE351",
+                "Students": ["11BCE0354", "11BCE0094", "11BCE0088"]
+            }
+        ],
+        "Token": "M8VSPTC9",
+        "Issued": "Tue, 09 Sep 2014 16:27:50 GMT"
+    }
+}

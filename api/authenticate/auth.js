@@ -70,7 +70,7 @@ exports.getAccessToken = function (empId, password, callback)
                         callback(false, data);
                     }
                 };
-                db.updateDocument(criteria, {$set: {Token: token}}, onUpdate);
+                db.updateDocument(criteria, {$set: {Token: token}}, {multi: true}, onUpdate);
             }
             else
             {

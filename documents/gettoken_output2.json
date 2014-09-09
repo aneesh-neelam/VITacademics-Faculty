@@ -1,0 +1,20 @@
+{
+    "Error": {
+        "Message": "Successful execution",
+        "Code": 0
+    },
+    "Token": {
+        "EmpId": "54321",
+        "Classes": [
+            {
+                "ClassNumber": "2070",
+                "Slot": "D1",
+                "CourseTitle": "Circuit Design",
+                "CourseCode": "ECE350",
+                "Students": ["12BEC0260", "12BEC0094", "12BEC0375", "12BEC0354"]
+            }
+        ],
+        "Token": "FYG6C2O4",
+        "Issued": "Tue, 09 Sep 2014 16:29:27 GMT"
+    }
+}
