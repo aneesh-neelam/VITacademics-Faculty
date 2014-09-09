@@ -42,6 +42,7 @@ var routes = require(path.join(__dirname, 'routes', 'web', 'index'));
 var routes_admin = require(path.join(__dirname, 'routes', 'web', 'admin'));
 var routes_test = require(path.join(__dirname, 'routes', 'web', 'test'));
 var api_login = require(path.join(__dirname, 'routes', 'api', 'auth'));
+var api_classes = require(path.join(__dirname, 'routes', 'api', 'classes'));
 
 var app = express();
 
@@ -71,6 +72,7 @@ app.use('/', routes);
 app.use('/admin', routes_admin);
 app.use('/test', routes_test);
 app.use('/api/auth', api_login);
+app.use('/api/classes', api_classes);
 
 
 // catch 404 and forward to error handler
