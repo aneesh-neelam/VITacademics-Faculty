@@ -53,7 +53,7 @@ exports.getAccessToken = function (empId, password, callback)
                         data.Error = error.codes.MongoDown;
                         callback(err, data);
                     }
-                    else if (result.nMatched == 0)
+                    else if (result.nModified == 0)
                     {
                         data.Error = error.codes.NoData;
                         callback(true, data);
@@ -100,7 +100,7 @@ exports.destroyAccessToken = function (empId, callback)
             data.Error = error.codes.MongoDown;
             callback(err, data);
         }
-        else if (result.nMatched == 0)
+        else if (result.nModified == 0)
         {
             data.Error = error.codes.NoData;
             callback(true, data);
