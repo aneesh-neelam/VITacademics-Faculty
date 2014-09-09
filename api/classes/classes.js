@@ -31,6 +31,7 @@ exports.postAttendance = function (classNumber, token, attendance, callback)
     var data = {};
     var onUpdate = function (err, result)
     {
+        console.log(result);
         if (err)
         {
             data.Error = error.codes.MongoDown;
@@ -38,7 +39,6 @@ exports.postAttendance = function (classNumber, token, attendance, callback)
         }
         else if (result.nModified == 0)
         {
-            console.log(result.nModified);
             data.Error = error.codes.NoData;
             callback(true, data);
         }
