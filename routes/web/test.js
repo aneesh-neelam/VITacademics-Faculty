@@ -22,15 +22,15 @@ var router = express.Router();
 router.get('/', function (req, res)
 {
     var type = req.query.type;
-    if (type == 'getaccesstoken')
+    if (type === '1')
     {
         res.render('getaccesstoken', {});
     }
-    else if (type == 'destroyaccesstoken')
+    else if (type === '2')
     {
         res.render('destroyaccesstoken', {});
     }
-    else if (type == 'postattendance')
+    else if (type === '3')
     {
         res.render('postattendance', {});
     }
